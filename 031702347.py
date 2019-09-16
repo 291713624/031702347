@@ -50427,7 +50427,7 @@ if level==1:
             street,
             detail
             ]
-        },
+        }
     print(json.dumps(addressbook,ensure_ascii=False))
 else:
     if s.find("路")!=-1:
