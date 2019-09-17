@@ -50329,7 +50329,7 @@ load_dict={
   }
 }
 
-s=input();
+s=input()
 def Get_name(a):
     name=a[2:a.find(',')]
     return name
@@ -50447,7 +50447,7 @@ if level==1:
             street,
             detail
             ]
-        },
+        }
     print(json.dumps(addressbook,ensure_ascii=False))
 else:
     if s.find("路")!=-1:
