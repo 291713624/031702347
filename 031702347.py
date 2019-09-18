@@ -50328,7 +50328,8 @@ load_dict={
     }
   }
 }
-
+global i
+global x
 s=input()
 def Get_name(a):
     name=a[2:a.find(',')]
@@ -50367,6 +50368,11 @@ for now in load_dict:
     else:
         now=""
 province=now
+try:
+    j=load_dict[province]
+except Exception as e:
+    print("There can't find the province!")
+    exit(0)
 s=s[i+1:]
 i=-1
 for now in load_dict[province]:
@@ -50388,13 +50394,20 @@ if province=="北京" or province=="天津" or province=="上海" or province=="
 else:
     city=now
 s=s[i+1:]
+citys=""
 if city=="":
     i=s.find("县")
     area=s[:i+1]
     s=s[i+1:]
-    for now in nows in load_dict[province]:
-        if now==area:
-            citys=now
+    j=load_dict[province]
+    for now in j:
+        y=0
+        for x in j[now]:
+            if x==area:
+                y=1
+                citys=now
+                break
+        if y==1:
             break
 else:
     citys=city
@@ -50418,13 +50431,19 @@ if area=="" and load_dict[province][citys].get(citys)!=None:
         else:
             now=""
 elif area=="" and load_dict[province][citys].get(citys)==None:
-    for now in nows in load_dict[province][citys]:
-        j=len(now)
-        if now==s[0:j]:
-            i=j
+    x=load_dict[province][citys]
+    for now in x:
+        y=0
+        for z in x[now]:
+            j=len(z)
+            if z==s[0:j]:
+                i=j
+                y=1
+                break
+            else:
+                now=""
+        if y==1:
             break
-        else:
-            now=""
 else:
     for now in load_dict[province][citys][area]:
         j=len(now)
