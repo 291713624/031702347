@@ -50371,7 +50371,8 @@ province=now
 try:
     j=load_dict[province]
 except Exception as e:
-    print("There can't find the province!")
+    addressbook={"姓名":name,"手机":number,"地址":[]}
+    print(json.dumps(addressbook,ensure_ascii=False))
     exit(0)
 s=s[i+1:]
 i=-1
@@ -50422,6 +50423,12 @@ else:
     area=now
     s=s[i:]
 i=0
+try:
+    x=load_dict[province][citys].get(citys)
+except Exception as e:
+    addressbook={"姓名":name,"手机":number,"地址":[]}
+    print(json.dumps(addressbook,ensure_ascii=False))
+    exit(0)
 if area=="" and load_dict[province][citys].get(citys)!=None:
     for now in load_dict[province][citys][citys]:
         j=len(now)
@@ -50430,20 +50437,13 @@ if area=="" and load_dict[province][citys].get(citys)!=None:
             break
         else:
             now=""
-elif area=="" and load_dict[province][citys].get(citys)==None:
-    x=load_dict[province][citys]
-    for now in x:
-        y=0
-        for z in x[now]:
-            j=len(z)
-            if z==s[0:j]:
-                i=j
-                y=1
-                break
-            else:
-                now=""
-        if y==1:
-            break
+elif area=="":
+    try:
+        x=load_dict[province][citys].get(citys)
+    except Exception as e:
+        addressbook={"姓名":name,"手机":number,"地址":[]}
+        print(json.dumps(addressbook,ensure_ascii=False))
+        exit(0)
 else:
     for now in load_dict[province][citys][area]:
         j=len(now)
