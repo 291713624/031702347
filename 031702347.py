@@ -50372,7 +50372,10 @@ try:
     j=load_dict[province]
 except Exception as e:
     addressbook={"姓名":name,"手机":number,"地址":[]}
-    print(json.dumps(addressbook,ensure_ascii=False))
+    req=json.dumps(addressbook,ensure_ascii=False)
+    if req.startswith(u'\ufeff'):
+        req = req.encode('utf8')[3:].decode('utf8')
+    print(req)
     exit(0)
 s=s[i+1:]
 i=-1
@@ -50442,7 +50445,10 @@ elif area=="":
         x=load_dict[province][citys].get(citys)
     except Exception as e:
         addressbook={"姓名":name,"手机":number,"地址":[]}
-        print(json.dumps(addressbook,ensure_ascii=False))
+        req=json.dumps(addressbook,ensure_ascii=False)
+        if req.startswith(u'\ufeff'):
+            req = req.encode('utf8')[3:].decode('utf8')
+        print(req)
         exit(0)
 else:
     for now in load_dict[province][citys][area]:
@@ -50467,7 +50473,10 @@ if level==1:
             detail
             ]
         }
-    print(json.dumps(addressbook,ensure_ascii=False))
+    req=json.dumps(addressbook,ensure_ascii=False)
+    if req.startswith(u'\ufeff'):
+        req = req.encode('utf8')[3:].decode('utf8')
+    print(req)
 else:
     if s.find("路")!=-1:
         j=s.find("路")
@@ -50533,4 +50542,7 @@ else:
             detail
             ]
         }
-    print(json.dumps(addressbook,ensure_ascii=False))
+    req=json.dumps(addressbook,ensure_ascii=False)
+    if req.startswith(u'\ufeff'):
+        req = req.encode('utf8')[3:].decode('utf8')
+    print(req)
